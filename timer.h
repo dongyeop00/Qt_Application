@@ -2,6 +2,8 @@
 #define TIMER_H
 
 #include <QDialog>
+#include <QTimer>
+
 
 namespace Ui {
 class Timer;
@@ -17,6 +19,14 @@ public:
 
 private:
     Ui::Timer *ui;
+    QTimer *timer;
+    int totalSeconds = 0;
+
+private slots:
+    void btn_start();
+    void btn_stop();
+    void btn_reset();
+    void updateTimer();
 };
 
 #endif // TIMER_H
