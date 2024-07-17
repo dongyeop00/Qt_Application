@@ -11,14 +11,20 @@ CONFIG += c++17
 SOURCES += \
     calculator.cpp \
     main.cpp \
+    stopwatch.cpp \
+    timer.cpp \
     widget.cpp
 
 HEADERS += \
     calculator.h \
+    stopwatch.h \
+    timer.h \
     widget.h
 
 FORMS += \
     calculator.ui \
+    stopwatch.ui \
+    timer.ui \
     widget.ui
 
 # Default rules for deployment.

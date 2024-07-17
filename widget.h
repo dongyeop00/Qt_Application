@@ -5,6 +5,8 @@
 #include <QTimer>
 
 #include "calculator.h"
+#include "stopwatch.h"
+#include "timer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -22,10 +24,14 @@ private slots:
     void currentClock();
     void leaveWorkClock();
     void btn_calculator();
+    void btn_stopwatch();
+    void btn_timer();
 
 private:
     Ui::Widget *ui;
     Calculator *calculator;
+    Stopwatch *stopwatch;
+    Timer *timer;
     QTimer *currentTimer;
     QTimer *leaveWorkTimer;
 };
