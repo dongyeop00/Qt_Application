@@ -103,7 +103,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QPushButton" name="btn_paintBoard_4">
+  <widget class="QPushButton" name="btn_notepad">
    <property name="geometry">
     <rect>
      <x>10</x>

@@ -11,18 +11,21 @@ CONFIG += c++17
 SOURCES += \
     calculator.cpp \
     main.cpp \
+    notepad.cpp \
     stopwatch.cpp \
     timer.cpp \
     widget.cpp
 
 HEADERS += \
     calculator.h \
+    notepad.h \
     stopwatch.h \
     timer.h \
     widget.h
 
 FORMS += \
     calculator.ui \
+    notepad.ui \
     stopwatch.ui \
     timer.ui \
     widget.ui

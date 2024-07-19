@@ -4,6 +4,7 @@
 #include "calculator.h"
 #include "stopwatch.h"
 #include "timer.h"
+#include "notepad.h"
 
 #include <QDateTime>
 
@@ -25,6 +26,7 @@ Widget::Widget(QWidget *parent)
     connect(ui->btn_calculator, SIGNAL(clicked(bool)), this, SLOT(btn_calculator()));
     connect(ui->btn_StopWatch, SIGNAL(clicked(bool)), this, SLOT(btn_stopwatch()));
     connect(ui->btn_Timer, SIGNAL(clicked(bool)), this, SLOT(btn_timer()));
+    connect(ui->btn_notepad, SIGNAL(clicked(bool)), this, SLOT(btn_notepad()));
 }
 
 Widget::~Widget()
@@ -76,5 +78,10 @@ void Widget::btn_stopwatch(){
 void Widget::btn_timer(){
     timer = new Timer(this);
     timer->show();
+}
+
+void Widget::btn_notepad(){
+    notepad = new Notepad(this);
+    notepad->show();
 }
 

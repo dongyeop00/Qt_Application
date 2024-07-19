@@ -7,6 +7,7 @@
 #include "calculator.h"
 #include "stopwatch.h"
 #include "timer.h"
+#include "notepad.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -26,12 +27,14 @@ private slots:
     void btn_calculator();
     void btn_stopwatch();
     void btn_timer();
+    void btn_notepad();
 
 private:
     Ui::Widget *ui;
     Calculator *calculator;
     Stopwatch *stopwatch;
     Timer *timer;
+    Notepad *notepad;
     QTimer *currentTimer;
     QTimer *leaveWorkTimer;
 };
