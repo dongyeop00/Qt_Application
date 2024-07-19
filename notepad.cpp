@@ -37,21 +37,17 @@ void Notepad::openFile(){
     if(!currentText.isEmpty()){
         QMessageBox::StandardButton reply = QMessageBox::warning(this, tr("Warning"), tr("텍스트가 존재합니다.\n그래도 새로운 파일을 여시겠습니까?"), QMessageBox::Yes | QMessageBox::No);
         if(reply == QMessageBox::Yes){
-            QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Text Files (*.txt);;All Files (*)"));
+            QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), tr("/home/dps_debug/Dongyeop/"), tr("Text Files (*.txt);;All Files (*)"));
 
             if (!fileName.isEmpty()){
-                QFile file(fileName);
-                if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-                    QMessageBox::warning(this, tr("Error"), tr("Cannot open file: ") + file.errorString());
-                    return;
-                }
-
-                QTextStream in(&file);
-                QString fileContent = in.readAll();
-
-                ui->textEdit->setPlainText(fileContent);
-                file.close();
+                getFileName(fileName);
             }
+        }
+    }else{
+        QString fileName = QFileDialog::getOpenFileName(this, tr("Open File"), tr("/home/dps_debug/Dongyeop/"), tr("Text Files (*.txt);;All Files (*)"));
+
+        if (!fileName.isEmpty()){
+            getFileName(fileName);
         }
     }
 }
@@ -85,4 +81,18 @@ void Notepad::newFile(){
     }else{
         ui->textEdit->setText("");
     }
+}
+
+void Notepad::getFileName(QString filename){
+    QFile file(filename);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QMessageBox::warning(this, tr("Error"), tr("Cannot open file: ") + file.errorString());
+        return;
+    }
+
+    QTextStream in(&file);
+    QString fileContent = in.readAll();
+
+    ui->textEdit->setPlainText(fileContent);
+    file.close();
 }
