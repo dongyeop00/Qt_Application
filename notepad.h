@@ -7,6 +7,7 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 namespace Ui {
 class Notepad;
@@ -20,15 +21,20 @@ public:
     explicit Notepad(QWidget *parent = nullptr);
     ~Notepad();
 
+protected:
+    void closeEvent(QCloseEvent *event) override;
+
 private:
     Ui::Notepad *ui;
     QMenuBar *menuBar;
     QMenu *menu;
+    void getFileName(QString filename);
 
 private slots:
     void openFile();
     void saveFile();
     void newFile();
+
 };
 
 #endif // NOTEPAD_H

@@ -53,21 +53,24 @@ void Notepad::openFile(){
 }
 
 void Notepad::saveFile(){
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Text Files (*.txt);;All Files (*)"));
-    qDebug() << fileName;
+    QString currentText = ui->textEdit->toPlainText();
 
-    if (!fileName.isEmpty())
-    {
-        QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        {
-            QMessageBox::warning(this, tr("Error"), tr("Cannot save file: ") + file.errorString());
-            return;
+    if(!currentText.isEmpty()){
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"), "", tr("Text Files (*.txt);;All Files (*)"));
+
+        if (!fileName.isEmpty()){
+            QFile file(fileName);
+            if (!file.open(QIODevice::WriteOnly | QIODevice::Text)){
+                QMessageBox::warning(this, tr("Error"), tr("Cannot save file: ") + file.errorString());
+                return;
+            }
+
+            QTextStream out(&file);
+            out << ui->textEdit->toPlainText();  // QTextEdit의 텍스트 가져오기
+            file.close();
         }
-
-        QTextStream out(&file);
-        out << ui->textEdit->toPlainText();  // QTextEdit의 텍스트 가져오기
-        file.close();
+    }else{
+        QMessageBox::about(this,tr("wait"), tr("notepad is empty"));
     }
 }
 
@@ -95,4 +98,17 @@ void Notepad::getFileName(QString filename){
 
     ui->textEdit->setPlainText(fileContent);
     file.close();
+}
+
+void Notepad::closeEvent(QCloseEvent *event){
+    if(!ui->textEdit->toPlainText().isEmpty()){
+        QMessageBox::StandardButton reply = QMessageBox::warning(this, tr("warning"), tr("텍스트가 존재합니다. 그래도 종료하시겠습니까?"), QMessageBox::Yes | QMessageBox::No);
+        if(reply == QMessageBox::Yes){
+            event->accept();
+        }else{
+            event->ignore();
+        }
+    }else{
+        event->accept();
+    }
 }
