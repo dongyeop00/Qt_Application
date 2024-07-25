@@ -12,6 +12,7 @@ SOURCES += \
     calculator.cpp \
     main.cpp \
     notepad.cpp \
+    paingboard.cpp \
     stopwatch.cpp \
     timer.cpp \
     widget.cpp
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     calculator.h \
     notepad.h \
+    paingboard.h \
     stopwatch.h \
     timer.h \
     widget.h
@@ -26,6 +28,7 @@ HEADERS += \
 FORMS += \
     calculator.ui \
     notepad.ui \
+    paingboard.ui \
     stopwatch.ui \
     timer.ui \
     widget.ui
