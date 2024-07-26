@@ -5,6 +5,15 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPen>
+#include <QMenuBar>
+#include <QMenu>
+#include <QAction>
+#include <QDebug>
+#include <QSpinBox>
+#include <QHBoxLayout>
+#include <QPushButton>
+#include <QSlider>
+#include <QLabel>
 
 namespace Ui {
 class Paintboard;
@@ -26,10 +35,15 @@ protected:
 
 private:
     Ui::Paintboard *ui;
-    bool drawing;
+    bool drawing = false;
     QPoint lastPoint;
     QPen pen;
     QImage image;
+    QMenuBar *menuBar;
+    QMenu *menu;
+
+private slots:
+    void changePenWidth();
 };
 
 #endif // PAINTBOARD_H
