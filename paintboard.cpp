@@ -1,10 +1,10 @@
-#include "paingboard.h"
-#include "ui_paingboard.h"
+#include "paintboard.h"
+#include "ui_paintboard.h"
 
-Paingboard::Paingboard(QWidget *parent) :
+Paintboard::Paintboard(QWidget *parent) :
     QDialog(parent),
-
-    ui(new Ui::Paingboard)
+    drawing(false),
+    ui(new Ui::Paintboard)
 {
     ui->setupUi(this);
     pen.setColor(Qt::black);
@@ -13,25 +13,25 @@ Paingboard::Paingboard(QWidget *parent) :
     image.fill(Qt::white);
 }
 
-Paingboard::~Paingboard()
+Paintboard::~Paintboard()
 {
     delete ui;
 }
 
-void Paingboard::paintEvent(QPaintEvent *event) {
+void Paintboard::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     QRect rect = event->rect();
     painter.drawImage(rect, image, rect);
 }
 
-void Paingboard::mousePressEvent(QMouseEvent *event) {
+void Paintboard::mousePressEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton) {
         drawing = true;
         lastPoint = event->pos();
     }
 }
 
-void Paingboard::mouseMoveEvent(QMouseEvent *event) {
+void Paintboard::mouseMoveEvent(QMouseEvent *event) {
     if ((event->buttons() & Qt::LeftButton) && drawing) {
         QPainter painter(&image);
         painter.setPen(pen);
@@ -41,7 +41,7 @@ void Paingboard::mouseMoveEvent(QMouseEvent *event) {
     }
 }
 
-void Paingboard::mouseReleaseEvent(QMouseEvent *event) {
+void Paintboard::mouseReleaseEvent(QMouseEvent *event) {
     if (event->button() == Qt::LeftButton && drawing) {
         drawing = false;
     }

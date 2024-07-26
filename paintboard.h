@@ -1,5 +1,5 @@
-#ifndef PAINGBOARD_H
-#define PAINGBOARD_H
+#ifndef PAINTBOARD_H
+#define PAINTBOARD_H
 
 #include <QDialog>
 #include <QMouseEvent>
@@ -7,16 +7,16 @@
 #include <QPen>
 
 namespace Ui {
-class Paingboard;
+class Paintboard;
 }
 
-class Paingboard : public QDialog
+class Paintboard : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Paingboard(QWidget *parent = nullptr);
-    ~Paingboard();
+    explicit Paintboard(QWidget *parent = nullptr);
+    ~Paintboard();
 
 protected:
     void paintEvent(QPaintEvent *event) override;
@@ -25,11 +25,11 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
-    Ui::Paingboard *ui;
+    Ui::Paintboard *ui;
     bool drawing;
     QPoint lastPoint;
     QPen pen;
     QImage image;
 };
 
-#endif // PAINGBOARD_H
+#endif // PAINTBOARD_H
